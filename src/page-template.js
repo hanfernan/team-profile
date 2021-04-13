@@ -6,8 +6,10 @@ const generateTeam = team => {
 
    // A method for a template to render intern info
 const  generateManager = manager = {
-   return `${manager.getName()} etc etc`
+   return `${manager.getName()} ${manager.getEmail()} etc etc`
 }
+
+//array to store employees
 const html = [];
    html.push(team
        .filter(employee => employee.getRole() === "Manager")
@@ -17,6 +19,8 @@ const html = [];
 }
 
 // We are exporting out an anonymous function
+
+//generate the HTML page
 module.exports = team => {
    return `
    <!DOCTYPE html>
