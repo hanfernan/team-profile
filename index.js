@@ -58,10 +58,62 @@ function runApp() {
             console.log(membersArray);
             //how can I store this info based on role?
             //where can I store it to call it later on?
+            //TODO: figure out where to call buildTeam()
             buildTeam();
 
         })
-    }
+    };
+
+    function createEngineer() {
+        inquire.prompt([
+            {
+                type: 'input',
+                message: 'Please enter your engineer name:',
+                name: 'name',
+            },
+            {
+                type: 'input',
+                message: 'Please enter your engineer ID:',
+                name: 'id',
+            },
+            {
+                type: 'input',
+                message: 'Please enter your engineer email address:',
+                name: 'email',
+            },
+            {
+                type: 'input',
+                message: 'Please enter your engineer GitHub username:',
+                name: 'github',
+            },
+        ])
+    };
+
+    function createIntern() {
+        inquire.prompt([
+            {
+                type: 'input',
+                message: 'Please enter your intern name:',
+                name: 'name',
+            },
+            {
+                type: 'input',
+                message: 'Please enter your intern ID:',
+                name: 'id',
+            },
+            {
+                type: 'input',
+                message: 'Please enter your intern email address:',
+                name: 'email',
+            },
+            {
+                type: 'input',
+                message: 'Please enter your intern school:',
+                name: 'school',
+            },
+        ])
+    };
+    
     function buildTeam() {
         //Create the output directory if the output path doesn't exist
         if (!fs.existsSync(OUTPUT_DIR)) {
