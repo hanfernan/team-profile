@@ -21,13 +21,14 @@ const membersArray = [];
 // JY Giving the name of pageTemplate
 
 // JY And now, we can use that pageTemplate as a function, which can ACCEPT a parameter
-pageTemplate(answers_from_inquirer_prompt);
+
 
 
 // JY THE DIST FOLDER IS WHERE THE OUTPUT HTML FILES WILL LAND
 
 
 function runApp() {
+    createManager()
     function createManager() {
         inquirer.prompt([
             {
@@ -52,20 +53,40 @@ function runApp() {
             },
         ]).then(answers => {
             console.log(answers);
-            const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNum);
+            const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
             console.log(manager);
             membersArray.push(manager);
             console.log(membersArray);
-            //how can I store this info based on role?
-            //where can I store it to call it later on?
-            //TODO: figure out where to call buildTeam()
-            buildTeam();
+            employeeMenu();
 
         })
     };
+    function confirm() {
+        inquirer.prompt([
+            {
+                type: 'confirm',
+                message: 'Would you like to add another employee?',
+                name: 'confirm'
+            }
+        ]).then(answers => {
+            answers.confirm ? employeeMenu() : buildTeam()
+        })
+    }
+    function employeeMenu() {
+        inquirer.prompt([
+            {
+                type: 'list',
+                choices: ['Engineer', 'Intern'],
+                message: 'What type of employee would you like to add?',
+                name: 'employeeType'
+            }
+        ]).then(answers => {
+            answers.employeeType === 'Engineer' ? createEngineer() : createIntern()
+        })
+    }
 
     function createEngineer() {
-        inquire.prompt([
+        inquirer.prompt([
             {
                 type: 'input',
                 message: 'Please enter your engineer name:',
@@ -86,11 +107,18 @@ function runApp() {
                 message: 'Please enter your engineer GitHub username:',
                 name: 'github',
             },
-        ])
-    };
+        ]).then(answers => {
+            console.log(answers);
+            const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+            console.log(engineer);
+            membersArray.push(engineer);
+            console.log(membersArray);
+            confirm();
+        });
+    }
 
     function createIntern() {
-        inquire.prompt([
+        inquirer.prompt([
             {
                 type: 'input',
                 message: 'Please enter your intern name:',
@@ -111,31 +139,26 @@ function runApp() {
                 message: 'Please enter your intern school:',
                 name: 'school',
             },
-        ])
-    };
-    
+        ]).then(answers => {
+            console.log(answers);
+            const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+            console.log(intern);
+            membersArray.push(intern);
+            console.log(membersArray);
+            confirm();
+        });
+
+    }
+
     function buildTeam() {
         //Create the output directory if the output path doesn't exist
         if (!fs.existsSync(OUTPUT_DIR)) {
             fs.mkdirSync(OUTPUT_DIR)
         }
-        fs.writeFileSync(outputPath, render(membersArray), "utf-8");
+        fs.writeFileSync(outputPath, pageTemplate(membersArray), "utf-8");
     }
-
-
 }
 runApp();
 
 
 
-
-
-
-
-
-//write to file  
-// function writeToFile(fileName, data) {
-//     fs.writeFile(filename, data, err => {
-//         if (err) console.log(err)
-//     })
-// }

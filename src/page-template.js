@@ -1,28 +1,59 @@
 // generate the HTML pages
 const generateTeam = team => {
     // A method for a template to render manager info
+    const generateIntern = intern => {
+        return `
+        <div class='card'>
+        <p>${intern.getName()}</p>
+        <p>${intern.getEmail()}</p>
+        <p>${intern.getId()}</p>
+        <p>${intern.getGitHub()}</p>
+        </div>`
+    }
+    // A method for a template to render engineer info
+    const generateEngineer = engineer => {
+        return `
+        <div class='card'>
+        <p>${engineer.getName()}</p>
+        <p>${engineer.getEmail()}</p>
+        <p>${engineer.getId()}</p>
+        <p>${engineer.getGitHub()}</p>
+        </div>`
+    }
+    // A method for a template to render intern info
+    const generateManager = manager => {
+        console.log(manager + "line 25")
+        return `
+        <div class='card'>
+        <p>${manager.getName()}</p>
+        <p>${manager.getEmail()}</p>
+        <p>${manager.getId()}</p>
+        <p>${manager.getOfficeNumber()}</p>
+        </div>`
+    }
 
-   // A method for a template to render engineer info
-
-   // A method for a template to render intern info
-const  generateManager = manager = {
-   return `${manager.getName()} ${manager.getEmail()} etc etc`
-}
-
-//array to store employees
-const html = [];
-   html.push(team
-       .filter(employee => employee.getRole() === "Manager")
-       .map(manager => generateManager(manager))
-   );
-   return html.join("");
+    //array to store employees
+    const html = [];
+    html.push(team
+        .filter(employee => employee.getRole() === "Manager")
+        .map(manager => generateManager(manager))
+    );
+    html.push(team
+        .filter(employee => employee.getRole() === "Engineer")
+        .map(engineer => generateEngineer(engineer))
+    );
+    html.push(team
+        .filter(employee => employee.getRole() === "Intern")
+        .map(intern => generateIntern(intern))
+    );
+    return html.join("");
 }
 
 // We are exporting out an anonymous function
 
 //generate the HTML page
 module.exports = team => {
-   return `
+    return `
    <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +76,7 @@ module.exports = team => {
        <div class="row">
            <div class="team-area col-12 d-flex justify-content-center">
                YOUR METHOD GOES HERE THE CARDS OF MANAGER, INTERN, ENGINEER WILL BE. 
-               ${someFunction(team)}
+               ${generateTeam(team)}
            </div>
        </div>
    </div>
