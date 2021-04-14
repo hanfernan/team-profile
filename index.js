@@ -43,12 +43,9 @@ function runApp() {
                 name: 'office',
             },
         ]).then(answers => {
-            console.log(answers);
             const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
-            console.log(manager);
             membersArray.push(manager);
-            console.log(membersArray);
-            employeeMenu();
+            confirm();
 
         })
     };
@@ -99,11 +96,8 @@ function runApp() {
                 name: 'github',
             },
         ]).then(answers => {
-            console.log(answers);
             const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
-            console.log(engineer);
             membersArray.push(engineer);
-            console.log(membersArray);
             confirm();
         });
     }
@@ -131,11 +125,8 @@ function runApp() {
                 name: 'school',
             },
         ]).then(answers => {
-            console.log(answers);
             const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
-            console.log(intern);
             membersArray.push(intern);
-            console.log(membersArray);
             confirm();
         });
 
