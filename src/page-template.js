@@ -1,6 +1,8 @@
 // generate the HTML pages
 const generateTeam = team => {
-    // A method for a template to render manager info
+    // plug in user responses to HTML
+
+    //Generate Intern
     const generateIntern = intern => {
         return `
         <div class='card m-3'>
@@ -15,7 +17,7 @@ const generateTeam = team => {
         </div>
         </div>`
     }
-    // A method for a template to render engineer info
+    // Generate Engineer
     const generateEngineer = engineer => {
         return `
         <div class='card m-3'>
@@ -30,7 +32,7 @@ const generateTeam = team => {
         </div>
         </div>`
     }
-    // A method for a template to render intern info
+    // Generate manager
     const generateManager = manager => {
         return `
         <div class='card m-3'>
@@ -46,7 +48,7 @@ const generateTeam = team => {
         </div>`
     }
 
-    //array to store employees
+    //empty array to store employees based on role
     const html = [];
     html.push(team
         .filter(employee => employee.getRole() === "Manager")
@@ -63,7 +65,6 @@ const generateTeam = team => {
     return html.join("");
 }
 
-// We are exporting out an anonymous function
 
 //generate the HTML page
 module.exports = team => {
