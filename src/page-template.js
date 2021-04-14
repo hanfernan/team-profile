@@ -3,32 +3,47 @@ const generateTeam = team => {
     // A method for a template to render manager info
     const generateIntern = intern => {
         return `
-        <div class='card'>
-        <p>${intern.getName()}</p>
-        <p>${intern.getEmail()}</p>
-        <p>${intern.getId()}</p>
-        <p>${intern.getGitHub()}</p>
+        <div class='card m-3'>
+        <div class="card-header p-2 ">
+            <h5 class="card-title">${intern.getName()}</h5>
+            <h6 class="card-subtitle">Intern</h6>
+        </div>
+        <div class="card-body p-2">
+            <p>Email: <a href="mailto:${intern.getEmail()}" target="_blank">${intern.getEmail()}</a></p>
+            <p>ID: ${intern.getId()}</p>
+            <p>School: ${intern.getSchool()}</p>
+        </div>
         </div>`
     }
     // A method for a template to render engineer info
     const generateEngineer = engineer => {
         return `
-        <div class='card'>
-        <p>${engineer.getName()}</p>
-        <p>${engineer.getEmail()}</p>
-        <p>${engineer.getId()}</p>
-        <p>${engineer.getGitHub()}</p>
+        <div class='card m-3'>
+        <div class="card-header p-2">
+            <h5 class="card-title">${engineer.getName()}</h5>
+            <h6 class="card-subtitle">Engineer</h6>
+        </div>
+        <div class="card-body p-2">
+            <p>Email: <a href="mailto:${engineer.getEmail()}" target="_blank">${engineer.getEmail()}</a></p>
+            <p>ID: ${engineer.getId()}</p>
+            <p>Github: <a href="https://github.com/${engineer.getGitHub()}" target="_blank">${engineer.getGitHub()}</a></p>
+        </div>
         </div>`
     }
     // A method for a template to render intern info
     const generateManager = manager => {
         console.log(manager + "line 25")
         return `
-        <div class='card'>
-        <p>${manager.getName()}</p>
-        <p>${manager.getEmail()}</p>
-        <p>${manager.getId()}</p>
-        <p>${manager.getOfficeNumber()}</p>
+        <div class='card m-3'>
+        <div class="card-header p-2">
+            <h5 class="card-title">${manager.getName()}</h5>
+            <h6 class="card-subtitle">Manager</h6>
+        </div>
+        <div class="card-body p-2">
+            <p>Email: <a href="mailto:${manager.getEmail()}" target="_blank">${manager.getEmail()}</a></p>
+            <p>ID: ${manager.getId()}</p>
+            <p>Office Number: ${manager.getOfficeNumber()}</p>
+        </div>
         </div>`
     }
 
@@ -75,7 +90,6 @@ module.exports = team => {
    <div class="container">
        <div class="row">
            <div class="team-area col-12 d-flex justify-content-center">
-               YOUR METHOD GOES HERE THE CARDS OF MANAGER, INTERN, ENGINEER WILL BE. 
                ${generateTeam(team)}
            </div>
        </div>

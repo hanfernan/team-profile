@@ -17,15 +17,6 @@ const Manager = require("./lib/Manager");
 
 //empty array to store members
 const membersArray = [];
-// JY We are receiving that anonymous function from page-template.js
-// JY Giving the name of pageTemplate
-
-// JY And now, we can use that pageTemplate as a function, which can ACCEPT a parameter
-
-
-
-// JY THE DIST FOLDER IS WHERE THE OUTPUT HTML FILES WILL LAND
-
 
 function runApp() {
     createManager()
