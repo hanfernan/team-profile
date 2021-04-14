@@ -32,7 +32,6 @@ const generateTeam = team => {
     }
     // A method for a template to render intern info
     const generateManager = manager => {
-        console.log(manager + "line 25")
         return `
         <div class='card m-3'>
         <div class="card-header p-2">
